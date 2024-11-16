@@ -53,7 +53,7 @@ router.get('/security', isAuthenticated, (req, res) =>{
     res.render('security', {username});
 })
 
-const NEWS_API_KEY = '8e149a6dfc464cbea0f30f45d4181370';
+const NEWS_API_KEY = process.env.NEWS_API_KEY
 router.get('/news', isAuthenticated , async (req, res) => {
     try {
         const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}`);
@@ -64,7 +64,7 @@ router.get('/news', isAuthenticated , async (req, res) => {
     }
 });
 
-const SPORTS_API_KEY = '39b75a7405d94a0fb081b3d681aa86f2';
+const SPORTS_API_KEY = process.env.SPORTS_API_KEY;
 router.get('/sports', isAuthenticated, async (req, res) => {
     try {
         const response = await axios.get(`https://api.sportsdata.io/v4/soccer/scores/json/ActiveMemberships/EPL?key=${SPORTS_API_KEY}`);
